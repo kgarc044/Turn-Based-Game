@@ -227,7 +227,7 @@ MonoBehaviour:
   magicFill: {fileID: 761340534}
   health: 100
   magic: 25
-  melee: 12
+  melee: 10
   magicRange: 6
   defense: 5
   speed: 6
@@ -1310,11 +1310,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1854080023086432939, guid: de7eaf74a0060a9438152baf6a903c70, type: 3}
       propertyPath: maxAttackMultiplier
-      value: 1.5
+      value: 1.1
       objectReference: {fileID: 0}
     - target: {fileID: 1854080023086432939, guid: de7eaf74a0060a9438152baf6a903c70, type: 3}
       propertyPath: minAttackMultiplier
-      value: 0.7
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1854080023086432939, guid: de7eaf74a0060a9438152baf6a903c70, type: 3}
+      propertyPath: minDefenseMultiplier
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1854080023086432939, guid: de7eaf74a0060a9438152baf6a903c70, type: 3}
+      propertyPath: maxDefenseMultiplier
+      value: 1.1
       objectReference: {fileID: 0}
     - target: {fileID: 1854080023086432940, guid: de7eaf74a0060a9438152baf6a903c70, type: 3}
       propertyPath: m_Name
@@ -3223,7 +3231,7 @@ MonoBehaviour:
   magicFill: {fileID: 802261524}
   health: 100
   magic: 25
-  melee: 10
+  melee: 15
   magicRange: 25
   defense: 4
   speed: 5
