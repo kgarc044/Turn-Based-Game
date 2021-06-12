@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using System;
 
 public class AttackScript : MonoBehaviour
 {
@@ -37,12 +39,12 @@ public class AttackScript : MonoBehaviour
     {
         magicScale = GameObject.Find("HeroMagicFill").GetComponent<RectTransform>().localScale;
     }
-
+    
     public void Attack(GameObject victim)
     {
         attackerStats = owner.GetComponent<FighterStats>();
         targetStats = victim.GetComponent<FighterStats>();
-
+        /*
         if(attackerStats.magic >= magicCost)
         {
             float multiplier = Random.Range(minAttackMultiplier, maxAttackMultiplier);
@@ -59,5 +61,6 @@ public class AttackScript : MonoBehaviour
             owner.GetComponent<Animator>().Play(animationName);
             targetStats.ReceiveDamage(damage);
         }
+        */
     }
 }
