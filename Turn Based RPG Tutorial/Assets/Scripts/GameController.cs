@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Transactions;
 using UnityEngine.SocialPlatforms;
+using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class GameController : MonoBehaviour
 
     [SerializeField]
     private GameObject battleMenu;
+
+    public Text battleText;
 
     // Start is called before the first frame update
     void Start()
@@ -26,13 +29,13 @@ public class GameController : MonoBehaviour
         fighterStats.Add(currentEnemyStats);
 
         fighterStats.Sort();
-        this.battleMenu.SetActive(false);
 
         NextTurn();
     }
     
     public void NextTurn()
     {
+        battleText.gameObject.SetActive(false);
         FighterStats currentFighterStats = fighterStats[0];
         fighterStats.Remove(currentFighterStats);
         if (!currentFighterStats.GetDead()) {
@@ -46,6 +49,7 @@ public class GameController : MonoBehaviour
             }
             else
             {
+                this.battleMenu.SetActive(false);
                 string attackType = Random.Range(0, 2) == 1 ? "melee" : "range";
                 currentUnit.GetComponent<FighterAction>().SelectAttack(attackType);
             }
