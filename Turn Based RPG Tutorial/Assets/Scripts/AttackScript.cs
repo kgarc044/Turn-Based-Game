@@ -1,8 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
+using Random = UnityEngine.Random;
 using UnityEngine.UI;
-using System;
+using UnityEngine;
 
 public class AttackScript : MonoBehaviour
 {
@@ -44,15 +44,20 @@ public class AttackScript : MonoBehaviour
     {
         attackerStats = owner.GetComponent<FighterStats>();
         targetStats = victim.GetComponent<FighterStats>();
-        /*
+        
         if(attackerStats.magic >= magicCost)
         {
             float multiplier = Random.Range(minAttackMultiplier, maxAttackMultiplier);
-            attackerStats.updateMagicFill(magicCost);
+            if(magicCost > 0)
+            {
+                attackerStats.updateMagicFill(magicCost);
+            }
+            
 
+            damage = multiplier * attackerStats.melee;
             if(magicAttack)
             {
-                damage = multiplier + attackerStats.magic;
+                damage = multiplier + attackerStats.magicRange;
                 attackerStats.magic -= magicCost;
             }
 
@@ -61,6 +66,6 @@ public class AttackScript : MonoBehaviour
             owner.GetComponent<Animator>().Play(animationName);
             targetStats.ReceiveDamage(damage);
         }
-        */
+        
     }
 }

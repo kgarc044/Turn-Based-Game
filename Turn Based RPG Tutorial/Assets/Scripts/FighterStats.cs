@@ -19,7 +19,7 @@ public class FighterStats : MonoBehaviour, IComparable
     public float health;
     public float magic;
     public float melee;
-    public float range;
+    public float magicRange;
     public float defense;
     public float speed;
     public float experience;
@@ -42,12 +42,13 @@ public class FighterStats : MonoBehaviour, IComparable
     private float xNewHealthScale;
     private float xNewMagicScale;
 
-    private void Start()
+    void Awake()
     {
         healthTransform = healthfill.GetComponent<RectTransform>();
         healthScale = healthfill.transform.localScale;
 
         magicTransform = magicFill.GetComponent<RectTransform>();
+        magicScale = magicFill.transform.localScale; 
 
         startHealth = health;
         startMagic = magic;
@@ -67,7 +68,7 @@ public class FighterStats : MonoBehaviour, IComparable
             Destroy(healthfill);
             Destroy(gameObject);
         }
-        else
+        else if (damage > 0)
         {
             xNewHealthScale = healthScale.x * (health / startHealth);
             healthfill.transform.localScale = new Vector2(xNewHealthScale, healthScale.y);
@@ -76,9 +77,23 @@ public class FighterStats : MonoBehaviour, IComparable
 
     public void updateMagicFill(float cost)
     {
-        magic -= cost;
-        xNewMagicScale = magicScale.x * (magic / startMagic);
-        magicFill.transform.localScale = new Vector2(xNewMagicScale, magicScale.y);
+        if(cost < 1)
+        {
+            magic -= cost;
+            xNewMagicScale = magicScale.x * (magic / startMagic);
+            magicFill.transform.localScale = new Vector2(xNewMagicScale, magicScale.y);
+        }
+        
+    }
+
+    public bool GetDead()
+    {
+        return dead;
+    }
+
+    public void CalculateNextTurn(int currentTurn)
+    {
+        nextActTurn = currentTurn + Mathf.CeilToInt(100f / speed);
     }
 
     public int CompareTo(object otherStats)
