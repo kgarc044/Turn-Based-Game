@@ -13,6 +13,8 @@ public class GameController : MonoBehaviour
     private GameObject battleMenu;
 
     public Text battleText;
+    public bool enemyDead;
+    public bool heroDead;
 
     // Start is called before the first frame update
     void Start()
@@ -30,15 +32,24 @@ public class GameController : MonoBehaviour
 
         fighterStats.Sort();
 
+        this.battleMenu.SetActive(false);
+
+        StartCoroutine(WaitForTime());
+    }
+
+    IEnumerator WaitForTime()
+    {
+        yield return new WaitForSeconds(5);
         NextTurn();
     }
-    
+
     public void NextTurn()
     {
         battleText.gameObject.SetActive(false);
         FighterStats currentFighterStats = fighterStats[0];
         fighterStats.Remove(currentFighterStats);
-        if (!currentFighterStats.GetDead()) {
+        if (!currentFighterStats.GetDead())
+        {
             GameObject currentUnit = currentFighterStats.gameObject;
             currentFighterStats.CalculateNextTurn(currentFighterStats.nextActTurn);
             fighterStats.Add(currentFighterStats);
@@ -59,4 +70,6 @@ public class GameController : MonoBehaviour
             NextTurn();
         }
     }
+
+
 }
