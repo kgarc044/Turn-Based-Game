@@ -43,6 +43,8 @@ public class FighterStats : MonoBehaviour, IComparable
     private float xNewMagicScale;
 
     private GameObject GameControllerObj;
+    public GameObject VictoryScreen;
+    public GameObject GameOverScreen;
 
     void Awake()
     {
@@ -68,7 +70,7 @@ public class FighterStats : MonoBehaviour, IComparable
 
         if(health <= 0)
         {
-            
+            GameControllerObj.GetComponent<GameController>().battleText.gameObject.SetActive(false);
             string objectName = gameObject.name;
             dead = true;
             gameObject.tag = "Dead";
@@ -131,10 +133,12 @@ public class FighterStats : MonoBehaviour, IComparable
 
         if (unitName == "Wizard Hero")
         {
+            GameOverScreen.SetActive(true);
             Debug.Log("GameOver");
         }
         else
         {
+            VictoryScreen.SetActive(true);
             Debug.Log("VICTORY");
         }
     }
