@@ -13,6 +13,8 @@ public class GameController : MonoBehaviour
     private GameObject battleMenu;
 
     public Text battleText;
+    public bool enemyDead;
+    public bool heroDead;
 
     // Start is called before the first frame update
     void Start()
@@ -59,4 +61,6 @@ public class GameController : MonoBehaviour
             NextTurn();
         }
     }
+
+    
 }

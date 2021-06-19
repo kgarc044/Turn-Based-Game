@@ -68,10 +68,14 @@ public class FighterStats : MonoBehaviour, IComparable
 
         if(health <= 0)
         {
+            
+            string objectName = gameObject.name;
             dead = true;
             gameObject.tag = "Dead";
             Destroy(healthfill);
             Destroy(gameObject);
+            DisplayEndScreen(objectName);
+            
         }
         else if (damage > 0)
         {
@@ -118,5 +122,20 @@ public class FighterStats : MonoBehaviour, IComparable
     {
         int nex = nextActTurn.CompareTo(((FighterStats)otherStats).nextActTurn);
         return nex;
+    }
+
+    public void DisplayEndScreen(string unitName)
+    {
+
+        Debug.Log("This function calls");
+
+        if (unitName == "Wizard Hero")
+        {
+            Debug.Log("GameOver");
+        }
+        else
+        {
+            Debug.Log("VICTORY");
+        }
     }
 }
