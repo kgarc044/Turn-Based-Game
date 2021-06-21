@@ -4054,7 +4054,7 @@ MonoBehaviour:
   melee: 50
   magicRange: 25
   defense: 4
-  speed: 5
+  speed: 7
   experience: 0
   nextActTurn: 0
   VictoryScreen: {fileID: 243030518}
