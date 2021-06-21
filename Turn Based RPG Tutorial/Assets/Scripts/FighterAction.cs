@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class FighterAction : MonoBehaviour
 {
@@ -38,9 +39,6 @@ public class FighterAction : MonoBehaviour
         } else if (btn.CompareTo("range") == 0)
         {
             rangePrefab.GetComponent<AttackScript>().Attack(victim);
-        } else
-        {
-            Debug.Log("Run");
-        }
+        } 
     }
 }
