@@ -15,6 +15,8 @@ public class FighterStats : MonoBehaviour, IComparable
     [SerializeField]
     private GameObject magicFill;
 
+    public OptionsMenu sliderSpeed;
+
     [Header("Stats")]
     public float health;
     public float magic;
@@ -46,8 +48,14 @@ public class FighterStats : MonoBehaviour, IComparable
     public GameObject VictoryScreen;
     public GameObject GameOverScreen;
 
+    void Start ()
+    {
+        SetSpeedFromOptions();
+    }
+
     void Awake()
     {
+
         healthTransform = healthfill.GetComponent<RectTransform>();
         healthScale = healthfill.transform.localScale;
 
@@ -60,14 +68,17 @@ public class FighterStats : MonoBehaviour, IComparable
         GameControllerObj = GameObject.Find("GameControllerObject");
     }
 
+    public void SetSpeedFromOptions()
+    {
+        animator.SetFloat("animSpeed", sliderSpeed.GetAnimationSpeed());
+    }
+
     public void ReceiveDamage(float damage)
     {
-
         health = health - damage;
         animator.Play("Damage");
 
         //Set damage text
-
         if(health <= 0)
         {
             GameControllerObj.GetComponent<GameController>().battleText.gameObject.SetActive(false);
@@ -102,7 +113,6 @@ public class FighterStats : MonoBehaviour, IComparable
             xNewMagicScale = magicScale.x * (magic / startMagic);
             magicFill.transform.localScale = new Vector2(xNewMagicScale, magicScale.y);
         }
-        
     }
 
     public bool GetDead()
@@ -128,18 +138,13 @@ public class FighterStats : MonoBehaviour, IComparable
 
     public void DisplayEndScreen(string unitName)
     {
-
-        Debug.Log("This function calls");
-
         if (unitName == "Wizard Hero")
         {
             GameOverScreen.SetActive(true);
-            Debug.Log("GameOver");
         }
         else
         {
             VictoryScreen.SetActive(true);
-            Debug.Log("VICTORY");
         }
     }
 }

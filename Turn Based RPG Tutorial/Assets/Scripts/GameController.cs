@@ -19,7 +19,6 @@ public class GameController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
         fighterStats = new List<FighterStats>();
         GameObject hero = GameObject.FindGameObjectWithTag("Hero");
         FighterStats currentFighterStats = hero.GetComponent<FighterStats>();
@@ -36,8 +35,6 @@ public class GameController : MonoBehaviour
         this.battleMenu.SetActive(false);
 
         StartCoroutine(WaitForTime());
-
-
     }
 
     IEnumerator WaitForTime()
